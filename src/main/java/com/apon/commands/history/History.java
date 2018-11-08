@@ -2,13 +2,10 @@ package com.apon.commands.history;
 
 import com.apon.Main;
 import com.apon.framework.loader.CommandProcessor;
-import com.apon.framework.loader.CommandProvider;
+import com.apon.framework.loader.Processor;
 
+@Processor
 public class History extends CommandProcessor {
-
-    static {
-        CommandProvider.registerProcessor(new History());
-    }
 
     @Override
     public void handleCommand() {

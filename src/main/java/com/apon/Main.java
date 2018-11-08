@@ -1,7 +1,5 @@
 package com.apon;
 
-import com.apon.commands.history.History;
-import com.apon.commands.ls.ListFiles;
 import com.apon.framework.loader.CommandProcessor;
 import com.apon.framework.loader.CommandProcessorOptions;
 import com.apon.framework.loader.CommandProvider;
@@ -10,24 +8,19 @@ import com.apon.log.Logger;
 import com.apon.util.FileUtil;
 import org.apache.commons.cli.CommandLineParser;
 import org.apache.commons.cli.ParseException;
-import org.beryx.textio.*;
+import org.beryx.textio.TextIO;
+import org.beryx.textio.TextIoFactory;
+import org.beryx.textio.TextTerminal;
 import org.beryx.textio.swing.SwingTextTerminal;
 
-import javax.swing.*;
 import java.awt.*;
 import java.io.File;
 import java.util.ArrayList;
 
 public class Main {
     public static void main(String[] args) {
-        // Workaround :)
-        // https://stackoverflow.com/questions/3560103/how-to-force-a-class-to-be-initialised
-        try {
-            Class.forName(ListFiles.class.getName(), true, ListFiles.class.getClassLoader());
-            Class.forName(History.class.getName(), true, History.class.getClassLoader());
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
+        // Load all the commands.
+        CommandProvider.init();
 
         Main main = new Main();
         main.run();
@@ -58,10 +51,10 @@ public class Main {
         // TODO: apparently this doesnt work. Fix it.
         terminal.getProperties().put("user.interrupt.key", EXIT_INTERRUPT_KEY);
 
-        terminal.registerHandler(KeyStroke.getKeyStroke("UP").toString(), t -> {
-            terminal.println("x");
-            return new ReadHandlerData(ReadInterruptionStrategy.Action.CONTINUE);
-        });
+//        terminal.registerHandler(KeyStroke.getKeyStroke("UP").toString(), t -> {
+//            terminal.println("x");
+//            return new ReadHandlerData(ReadInterruptionStrategy.Action.CONTINUE);
+//        });
 
         while (true) {
             // Other commands can reset color etc, so we set default again.

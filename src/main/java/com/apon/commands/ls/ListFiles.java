@@ -1,7 +1,7 @@
 package com.apon.commands.ls;
 
 import com.apon.framework.loader.CommandProcessor;
-import com.apon.framework.loader.CommandProvider;
+import com.apon.framework.loader.Processor;
 import com.apon.util.FileUtil;
 
 import java.awt.*;
@@ -9,11 +9,8 @@ import java.io.File;
 import java.util.Comparator;
 import java.util.List;
 
+@Processor(options = ListFilesOptions.class)
 public class ListFiles extends CommandProcessor {
-
-    static {
-        CommandProvider.registerProcessor(new ListFiles());
-    }
 
     public ListFiles() {
         commandProcessorOptions = new ListFilesOptions();

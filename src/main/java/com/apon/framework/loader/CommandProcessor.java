@@ -18,9 +18,6 @@ public abstract class CommandProcessor {
     // The argument that is parsed from the command.
     protected CommandLine commandLine;
 
-    // Any object that can be given to pass very specific stuff.
-    protected Object object;
-
     public CommandProcessor() {
         // As default, no options are given.
         commandProcessorOptions = new CommandProcessorOptions();
@@ -46,11 +43,11 @@ public abstract class CommandProcessor {
         this.currentDirectory = currentDirectory;
     }
 
-    public void setCommandLine(CommandLine commandLine) {
-        this.commandLine = commandLine;
+    public void setCommandProcessorOptions(CommandProcessorOptions commandProcessorOptions) {
+        this.commandProcessorOptions = commandProcessorOptions;
     }
 
-    public void setObject(Object object) {
-        this.object = object;
+    public void setCommandLine(CommandLine commandLine) {
+        this.commandLine = commandLine;
     }
 }

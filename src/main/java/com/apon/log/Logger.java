@@ -5,6 +5,10 @@ public class Logger {
         System.out.println(message);
     }
 
+    public static void logWarning(String message) {
+        System.out.println(message);
+    }
+
     public static void logError(Exception e) {
         e.printStackTrace();
     }
